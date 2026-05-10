@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rent vs Buy Calculator – Is It Better to Rent or Buy?</title>
+  <meta name="description" content="Free rent vs buy calculator. Find out whether renting or buying a home is the smarter financial decision based on your situation."/>
+  <meta name="keywords" content="rent vs buy calculator, should I rent or buy, rent or buy home, buying vs renting calculator"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f0fdf4; --card: #ffffff; --ink: #1a1a1a; --muted: #6b7280;
+      --buy: #16a34a; --buy-light: #f0fdf4; --rent: #0369a1; --rent-light: #f0f9ff;
+      --border: #d1fae5; --shadow: 0 2px 24px rgba(0,0,0,0.07); --radius: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    .page-wrap { max-width: 1000px; margin: 0 auto; padding: 40px 20px 80px; }
+    header { text-align: center; margin-bottom: 48px; }
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--buy); background: var(--buy-light); border: 1px solid #bbf7d0; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin-bottom: 12px; }
+    h1 .buy { color: var(--buy); font-style: italic; } h1 .rent { color: var(--rent); font-style: italic; }
+    .subtitle { color: var(--muted); font-size: 16px; max-width: 520px; margin: 0 auto; line-height: 1.6; }
+    .inputs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px; }
+    @media (max-width: 680px) { .inputs-grid { grid-template-columns: 1fr; } }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); padding: 28px; }
+    .card.buy-card { border-top: 3px solid var(--buy); }
+    .card.rent-card { border-top: 3px solid var(--rent); }
+    .card-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .buy-title { color: var(--buy); } .rent-title { color: var(--rent); }
+    .field { margin-bottom: 18px; }
+    label { display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+    .input-wrap { position: relative; }
+    .input-prefix, .input-suffix { position: absolute; top: 50%; transform: translateY(-50%); font-size: 14px; font-weight: 500; color: var(--muted); pointer-events: none; }
+    .input-prefix { left: 12px; } .input-suffix { right: 12px; }
+    input[type="number"] { width: 100%; padding: 11px 14px; border: 1.5px solid #e5e7eb; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; color: var(--ink); background: #fafafa; outline: none; transition: border-color 0.2s; -moz-appearance: textfield; }
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input[type="number"]:focus { background: #fff; }
+    .has-prefix input { padding-left: 28px; } .has-suffix input { padding-right: 36px; }
+    .buy-card input:focus { border-color: var(--buy); box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
+    .rent-card input:focus { border-color: var(--rent); box-shadow: 0 0 0 3px rgba(3,105,161,0.1); }
+    .calc-btn { width: 100%; padding: 14px; background: var(--buy); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+    .calc-btn:hover { background: #15803d; }
+    .verdict-card { border-radius: var(--radius); padding: 32px; text-align: center; margin-bottom: 24px; color: #fff; }
+    .verdict-card.buy-wins { background: var(--buy); box-shadow: 0 8px 32px rgba(22,163,74,0.25); }
+    .verdict-card.rent-wins { background: var(--rent); box-shadow: 0 8px 32px rgba(3,105,161,0.25); }
+    .verdict-label { font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.75; margin-bottom: 10px; }
+    .verdict-main { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 5vw, 2.8rem); margin-bottom: 8px; }
+    .verdict-sub { font-size: 15px; opacity: 0.85; max-width: 400px; margin: 0 auto; line-height: 1.5; }
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .comp-box { border-radius: 12px; padding: 20px; }
+    .comp-box.buy { background: var(--buy-light); border: 1px solid #bbf7d0; }
+    .comp-box.rent { background: var(--rent-light); border: 1px solid #bae6fd; }
+    .comp-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; }
+    .comp-title.buy { color: var(--buy); } .comp-title.rent { color: var(--rent); }
+    .comp-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 13.5px; }
+    .comp-row:last-child { border-bottom: none; font-weight: 600; }
+    .comp-row span:first-child { color: var(--muted); }
+    .full-width { grid-column: 1/-1; }
+    .nav { display: flex; justify-content: center; margin-bottom: 32px; }
+    .nav a { color: var(--buy); text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: background 0.15s; }
+    .nav a:hover { background: var(--buy-light); }
+    footer { text-align: center; margin-top: 60px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+    #resultSection { display: none; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <nav class="nav"><a href="index.html">← Back to All Calculators</a></nav>
+  <header>
+    <div class="eyebrow">Free Tool · No Sign-up</div>
+    <h1>Rent <span class="rent">vs</span> Buy <em class="buy">Calculator</em></h1>
+    <p class="subtitle">Enter your numbers and find out whether renting or buying makes more financial sense for your situation.</p>
+  </header>
+  <div class="inputs-grid">
+    <div class="card buy-card">
+      <div class="card-title buy-title">🏠 Buying Costs</div>
+      <div class="field"><label>Home Price</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="homePrice" value="400000"/></div></div>
+      <div class="field"><label>Down Payment</label><div class="input-wrap has-suffix"><input type="number" id="downPct" value="20" min="0" max="100"/><span class="input-suffix">%</span></div></div>
+      <div class="field"><label>Mortgage Rate</label><div class="input-wrap has-suffix"><input type="number" id="mortgageRate" value="6.8" min="0" step="0.05"/><span class="input-suffix">%</span></div></div>
+      <div class="field"><label>Loan Term (Years)</label><div class="input-wrap"><input type="number" id="loanYears" value="30"/></div></div>
+      <div class="field"><label>Property Tax (Annual)</label><div class="input-wrap has-suffix"><input type="number" id="propTax" value="1.2" step="0.1"/><span class="input-suffix">%</span></div></div>
+      <div class="field"><label>Home Insurance (Annual)</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="insurance" value="1800"/></div></div>
+      <div class="field"><label>Annual Appreciation</label><div class="input-wrap has-suffix"><input type="number" id="appreciation" value="3.5" step="0.1"/><span class="input-suffix">%</span></div></div>
+    </div>
+    <div class="card rent-card">
+      <div class="card-title rent-title">🏢 Renting Costs</div>
+      <div class="field"><label>Monthly Rent</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="monthlyRent" value="2200"/></div></div>
+      <div class="field"><label>Annual Rent Increase</label><div class="input-wrap has-suffix"><input type="number" id="rentIncrease" value="3" step="0.1"/><span class="input-suffix">%</span></div></div>
+      <div class="field"><label>Renter's Insurance (Annual)</label><div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="renterInsurance" value="300"/></div></div>
+      <div class="field"><label>Investment Return on Down Payment</label><div class="input-wrap has-suffix"><input type="number" id="investReturn" value="7" step="0.1"/><span class="input-suffix">%</span></div></div>
+      <div class="field"><label>Time Horizon (Years)</label><div class="input-wrap"><input type="number" id="years" value="7" min="1" max="30"/></div></div>
+      <div style="margin-top: 32px;">
+        <button class="calc-btn" onclick="calculate()">Compare Renting vs Buying →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="resultSection">
+    <div class="verdict-card" id="verdictCard">
+      <div class="verdict-label">After <span id="verdictYears">7</span> Years</div>
+      <div class="verdict-main" id="verdictMain">—</div>
+      <div class="verdict-sub" id="verdictSub">—</div>
+    </div>
+    <div class="comparison-grid">
+      <div class="comp-box buy">
+        <div class="comp-title buy">🏠 Cost to Buy</div>
+        <div class="comp-row"><span>Mortgage Payments</span><span id="b_mortgage">—</span></div>
+        <div class="comp-row"><span>Property Tax</span><span id="b_tax">—</span></div>
+        <div class="comp-row"><span>Insurance</span><span id="b_ins">—</span></div>
+        <div class="comp-row"><span>Down Payment</span><span id="b_down">—</span></div>
+        <div class="comp-row"><span>Home Value</span><span id="b_home">—</span></div>
+        <div class="comp-row"><span>Net Cost</span><span id="b_net">—</span></div>
+      </div>
+      <div class="comp-box rent">
+        <div class="comp-title rent">🏢 Cost to Rent</div>
+        <div class="comp-row"><span>Total Rent Paid</span><span id="r_rent">—</span></div>
+        <div class="comp-row"><span>Insurance</span><span id="r_ins">—</span></div>
+        <div class="comp-row"><span>Investment Growth</span><span id="r_invest">—</span></div>
+        <div class="comp-row"><span></span><span></span></div>
+        <div class="comp-row"><span></span><span></span></div>
+        <div class="comp-row"><span>Net Cost</span><span id="r_net">—</span></div>
+      </div>
+    </div>
+  </div>
+  <footer><p>This calculator provides estimates for informational purposes only. Many factors affect rent vs. buy decisions.<br>Consult a financial advisor before making major decisions.</p></footer>
+</div>
+<script>
+  const fmt = n => '$' + Math.round(Math.abs(n)).toLocaleString('en-US');
+  function calculate() {
+    const price = +document.getElementById('homePrice').value||0;
+    const downPct = +document.getElementById('downPct').value||0;
+    const rate = +document.getElementById('mortgageRate').value||0;
+    const loanYrs = +document.getElementById('loanYears').value||30;
+    const propTax = +document.getElementById('propTax').value||0;
+    const ins = +document.getElementById('insurance').value||0;
+    const apprec = +document.getElementById('appreciation').value||0;
+    const rent = +document.getElementById('monthlyRent').value||0;
+    const rentInc = +document.getElementById('rentIncrease').value||0;
+    const renterIns = +document.getElementById('renterInsurance').value||0;
+    const investRet = +document.getElementById('investReturn').value||0;
+    const yrs = +document.getElementById('years').value||7;
+
+    const dp = price * downPct / 100;
+    const principal = price - dp;
+    const r = rate / 100 / 12;
+    const n = loanYrs * 12;
+    const monthly = principal * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+
+    // Buy costs
+    let totalMortgage = monthly * yrs * 12;
+    let totalTax = 0, currentPrice = price;
+    for (let y = 0; y < yrs; y++) { totalTax += currentPrice * propTax / 100; currentPrice *= (1 + apprec/100); }
+    const finalHomeValue = currentPrice;
+    const totalIns = ins * yrs;
+    const buyCost = totalMortgage + totalTax + totalIns + dp - finalHomeValue;
+
+    // Rent costs
+    let totalRent = 0, curRent = rent * 12;
+    for (let y = 0; y < yrs; y++) { totalRent += curRent; curRent *= (1 + rentInc/100); }
+    const totalRenterIns = renterIns * yrs;
+    const investGrowth = dp * (Math.pow(1 + investRet/100, yrs) - 1);
+    const rentCost = totalRent + totalRenterIns - investGrowth;
+
+    document.getElementById('b_mortgage').textContent = fmt(totalMortgage);
+    document.getElementById('b_tax').textContent = fmt(totalTax);
+    document.getElementById('b_ins').textContent = fmt(totalIns);
+    document.getElementById('b_down').textContent = fmt(dp);
+    document.getElementById('b_home').textContent = '-' + fmt(finalHomeValue);
+    document.getElementById('b_net').textContent = (buyCost < 0 ? '-' : '') + fmt(buyCost);
+    document.getElementById('r_rent').textContent = fmt(totalRent);
+    document.getElementById('r_ins').textContent = fmt(totalRenterIns);
+    document.getElementById('r_invest').textContent = '-' + fmt(investGrowth);
+    document.getElementById('r_net').textContent = fmt(rentCost);
+
+    const diff = Math.abs(buyCost - rentCost);
+    const buyWins = buyCost < rentCost;
+    document.getElementById('verdictYears').textContent = yrs;
+    document.getElementById('verdictMain').textContent = buyWins ? '🏠 Buying is Better' : '🏢 Renting is Better';
+    document.getElementById('verdictSub').textContent = `By buying, you ${buyWins ? 'save' : 'spend'} ${fmt(diff)} more over ${yrs} years compared to renting.`;
+    const vc = document.getElementById('verdictCard');
+    vc.className = 'verdict-card ' + (buyWins ? 'buy-wins' : 'rent-wins');
+    document.getElementById('resultSection').style.display = 'block';
+    document.getElementById('resultSection').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+</script>
+</body>
+</html>

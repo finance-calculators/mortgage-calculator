@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Loan Calculator – Monthly Payment Estimator</title>
+  <meta name="description" content="Free personal loan calculator. Instantly calculate your monthly payment, total cost, and amortization schedule for any personal loan."/>
+  <meta name="keywords" content="personal loan calculator, loan payment calculator, monthly payment estimator, loan interest calculator"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #faf5ff; --card: #ffffff; --ink: #1a1a2e; --muted: #7c6f8e;
+      --accent: #7c3aed; --accent-light: #f5f3ff; --accent2: #f59e0b;
+      --border: #e9e3f5; --shadow: 0 2px 24px rgba(0,0,0,0.07); --radius: 16px;
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    .page-wrap { max-width: 960px; margin: 0 auto; padding: 40px 20px 80px; }
+    header { text-align: center; margin-bottom: 48px; }
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); border: 1px solid #ddd6fe; padding: 5px 14px; border-radius: 100px; margin-bottom: 16px; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; margin-bottom: 12px; }
+    h1 em { font-style: italic; color: var(--accent); }
+    .subtitle { color: var(--muted); font-size: 16px; max-width: 500px; margin: 0 auto; line-height: 1.6; }
+    .calculator-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+    @media (max-width: 680px) { .calculator-grid { grid-template-columns: 1fr; } }
+    .card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); padding: 32px; }
+    .card-title { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+    .card-title .icon { width: 32px; height: 32px; background: var(--accent-light); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+    .field { margin-bottom: 22px; }
+    label { display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .input-wrap { position: relative; }
+    .input-prefix, .input-suffix { position: absolute; top: 50%; transform: translateY(-50%); font-size: 15px; font-weight: 500; color: var(--muted); pointer-events: none; }
+    .input-prefix { left: 14px; } .input-suffix { right: 14px; }
+    input[type="number"], select { width: 100%; padding: 13px 16px; border: 1.5px solid var(--border); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 500; color: var(--ink); background: #fdfcff; outline: none; transition: border-color 0.2s, box-shadow 0.2s; -moz-appearance: textfield; }
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input[type="number"]:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(124,58,237,0.1); background: #fff; }
+    .has-prefix input { padding-left: 32px; } .has-suffix input { padding-right: 40px; }
+    .range-row { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+    input[type="range"] { flex: 1; -webkit-appearance: none; height: 4px; background: var(--border); border-radius: 2px; outline: none; cursor: pointer; }
+    input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; background: var(--accent); border-radius: 50%; border: 2px solid #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.2); cursor: pointer; }
+    .range-val { font-size: 14px; font-weight: 600; color: var(--accent); min-width: 44px; text-align: right; }
+    .calc-btn { width: 100%; padding: 15px; background: var(--accent); color: #fff; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: background 0.2s, transform 0.1s; }
+    .calc-btn:hover { background: #6d28d9; } .calc-btn:active { transform: scale(0.98); }
+    .result-card { background: var(--accent); color: #fff; border-radius: var(--radius); padding: 32px; box-shadow: 0 8px 32px rgba(124,58,237,0.3); position: relative; overflow: hidden; }
+    .result-card::before { content: ''; position: absolute; top: -40px; right: -40px; width: 180px; height: 180px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+    .result-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; margin-bottom: 6px; }
+    .result-amount { font-family: 'DM Serif Display', serif; font-size: clamp(2.2rem, 6vw, 3.5rem); line-height: 1; margin-bottom: 4px; position: relative; z-index: 1; }
+    .result-note { font-size: 13px; opacity: 0.75; margin-bottom: 28px; }
+    .result-breakdown { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; position: relative; z-index: 1; }
+    .breakdown-item { background: rgba(255,255,255,0.12); border-radius: 10px; padding: 14px 16px; }
+    .breakdown-label { font-size: 11px; opacity: 0.7; margin-bottom: 4px; }
+    .breakdown-val { font-size: 17px; font-weight: 600; }
+    .progress-section { margin-top: 24px; position: relative; z-index: 1; }
+    .progress-label-row { display: flex; justify-content: space-between; font-size: 12px; opacity: 0.75; margin-bottom: 6px; }
+    .progress-bar { height: 8px; background: rgba(255,255,255,0.2); border-radius: 4px; overflow: hidden; }
+    .progress-fill { height: 100%; background: var(--accent2); border-radius: 4px; transition: width 0.6s cubic-bezier(0.4,0,0.2,1); }
+    .amort-card { grid-column: 1 / -1; }
+    .amort-toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 14px; font-weight: 500; color: var(--accent); margin-top: 4px; user-select: none; }
+    .amort-toggle svg { transition: transform 0.25s; }
+    .amort-toggle.open svg { transform: rotate(180deg); }
+    .amort-wrap { display: none; margin-top: 20px; overflow-x: auto; }
+    .amort-wrap.visible { display: block; }
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    thead th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); padding: 0 12px 10px; border-bottom: 1.5px solid var(--border); }
+    tbody tr { border-bottom: 1px solid var(--border); } tbody tr:hover { background: var(--accent-light); } tbody tr:last-child { border-bottom: none; }
+    tbody td { padding: 11px 12px; color: var(--ink); } tbody td:first-child { color: var(--muted); font-weight: 500; }
+    .td-interest { color: #7c3aed !important; font-weight: 500; }
+    .empty-state { text-align: center; padding: 40px 20px; }
+    .empty-icon { font-size: 48px; margin-bottom: 12px; opacity: 0.3; }
+    .empty-text { color: rgba(255,255,255,0.7); font-size: 15px; }
+    .nav { display: flex; justify-content: center; margin-bottom: 32px; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: background 0.15s; }
+    .nav a:hover { background: var(--accent-light); }
+    footer { text-align: center; margin-top: 60px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <nav class="nav"><a href="index.html">← Back to All Calculators</a></nav>
+  <header>
+    <div class="eyebrow">Free Tool · No Sign-up</div>
+    <h1>Personal Loan <em>Calculator</em></h1>
+    <p class="subtitle">Find your monthly payment and total loan cost instantly. Compare different loan amounts and terms.</p>
+  </header>
+  <div class="calculator-grid">
+    <div class="card">
+      <div class="card-title"><span class="icon">💳</span>Loan Details</div>
+      <div class="field">
+        <label>Loan Amount</label>
+        <div class="input-wrap has-prefix"><span class="input-prefix">$</span><input type="number" id="loanAmount" value="15000" min="0" step="500" oninput="syncLoan()"/></div>
+        <div class="range-row"><input type="range" id="loanSlider" min="1000" max="100000" step="500" value="15000" oninput="syncLoanFromSlider()"/><span class="range-val" id="loanSliderVal">$15K</span></div>
+      </div>
+      <div class="field">
+        <label>Loan Term</label>
+        <select id="loanTerm" onchange="calculate()">
+          <option value="84">84 Months (7 Years)</option>
+          <option value="60" selected>60 Months (5 Years)</option>
+          <option value="48">48 Months (4 Years)</option>
+          <option value="36">36 Months (3 Years)</option>
+          <option value="24">24 Months (2 Years)</option>
+          <option value="12">12 Months (1 Year)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Interest Rate (Annual)</label>
+        <div class="input-wrap has-suffix"><input type="number" id="interestRate" value="10.5" min="0" max="36" step="0.05" oninput="syncRate()"/><span class="input-suffix">%</span></div>
+        <div class="range-row"><input type="range" id="rateSlider" min="1" max="36" step="0.05" value="10.5" oninput="syncRateFromSlider()"/><span class="range-val" id="rateSliderVal">10.5%</span></div>
+      </div>
+      <div class="field">
+        <label>Origination Fee (optional)</label>
+        <div class="input-wrap has-suffix"><input type="number" id="origFee" value="0" min="0" max="10" step="0.1" oninput="calculate()"/><span class="input-suffix">%</span></div>
+      </div>
+      <button class="calc-btn" onclick="calculate()">Calculate Payment →</button>
+    </div>
+    <div class="result-card">
+      <div id="emptyState" class="empty-state"><div class="empty-icon">💳</div><div class="empty-text">Enter your loan details and hit Calculate</div></div>
+      <div id="resultContent" style="display:none">
+        <div class="result-label">Monthly Payment</div>
+        <div class="result-amount" id="monthlyPayment">$0</div>
+        <div class="result-note">Fixed monthly installment</div>
+        <div class="result-breakdown">
+          <div class="breakdown-item"><div class="breakdown-label">Loan Amount</div><div class="breakdown-val" id="loanAmountDisplay">$0</div></div>
+          <div class="breakdown-item"><div class="breakdown-label">Total Payment</div><div class="breakdown-val" id="totalPayment">$0</div></div>
+          <div class="breakdown-item"><div class="breakdown-label">Total Interest</div><div class="breakdown-val" id="totalInterest">$0</div></div>
+          <div class="breakdown-item"><div class="breakdown-label">Effective APR</div><div class="breakdown-val" id="effectiveAPR">—</div></div>
+        </div>
+        <div class="progress-section">
+          <div class="progress-label-row"><span>Principal</span><span>Interest</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="principalBar" style="width:50%"></div></div>
+          <div class="progress-label-row" style="margin-top:5px"><span id="principalPct">—</span><span id="interestPct">—</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card amort-card">
+      <div class="card-title"><span class="icon">📅</span>Amortization Schedule</div>
+      <div class="amort-toggle" id="amortToggle" onclick="toggleAmort()">Show month-by-month breakdown <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="amort-wrap" id="amortWrap">
+        <table><thead><tr><th>Month</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+        <tbody id="amortBody"><tr><td colspan="4" style="text-align:center;color:var(--muted);padding:20px">Calculate first to see schedule</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+  <footer><p>This calculator provides estimates for informational purposes only.<br>Consult a licensed financial professional for advice.</p></footer>
+</div>
+<script>
+  const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+  function syncLoan() { const v = +document.getElementById('loanAmount').value||0; document.getElementById('loanSlider').value = v; document.getElementById('loanSliderVal').textContent = v >= 1000 ? '$'+(v/1000).toFixed(0)+'K' : '$'+v; calculate(); }
+  function syncLoanFromSlider() { const v = +document.getElementById('loanSlider').value; document.getElementById('loanAmount').value = v; document.getElementById('loanSliderVal').textContent = '$'+(v/1000).toFixed(0)+'K'; calculate(); }
+  function syncRate() { const r = +document.getElementById('interestRate').value; document.getElementById('rateSlider').value = r; document.getElementById('rateSliderVal').textContent = r + '%'; calculate(); }
+  function syncRateFromSlider() { const r = +document.getElementById('rateSlider').value; document.getElementById('interestRate').value = r; document.getElementById('rateSliderVal').textContent = r + '%'; calculate(); }
+  function calculate() {
+    const principal = +document.getElementById('loanAmount').value || 0;
+    const months = +document.getElementById('loanTerm').value;
+    const annualRate = +document.getElementById('interestRate').value;
+    const feePct = +document.getElementById('origFee').value || 0;
+    if (principal <= 0 || annualRate <= 0) return;
+    const fee = principal * feePct / 100;
+    const r = annualRate / 100 / 12;
+    const monthly = principal * r * Math.pow(1+r,months) / (Math.pow(1+r,months) - 1);
+    const totalPaid = monthly * months + fee;
+    const totalInt = totalPaid - principal;
+    document.getElementById('monthlyPayment').textContent = fmt(monthly);
+    document.getElementById('loanAmountDisplay').textContent = fmt(principal);
+    document.getElementById('totalPayment').textContent = fmt(totalPaid);
+    document.getElementById('totalInterest').textContent = fmt(totalInt);
+    document.getElementById('effectiveAPR').textContent = annualRate.toFixed(2) + '%';
+    const pp = Math.round(principal / totalPaid * 100);
+    document.getElementById('principalBar').style.width = pp + '%';
+    document.getElementById('principalPct').textContent = pp + '% Principal';
+    document.getElementById('interestPct').textContent = (100-pp) + '% Interest';
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('resultContent').style.display = 'block';
+    let bal = principal; const rows = [];
+    for (let m = 1; m <= months; m++) {
+      const intPmt = bal * r; const prinPmt = Math.min(monthly - intPmt, bal); bal -= prinPmt;
+      rows.push(`<tr><td>Month ${m}</td><td>${fmt(prinPmt)}</td><td class="td-interest">${fmt(intPmt)}</td><td>${fmt(Math.max(0,bal))}</td></tr>`);
+    }
+    document.getElementById('amortBody').innerHTML = rows.join('');
+  }
+  function toggleAmort() { const w = document.getElementById('amortWrap'); const b = document.getElementById('amortToggle'); w.classList.toggle('visible'); b.classList.toggle('open'); b.childNodes[0].textContent = w.classList.contains('visible') ? 'Hide schedule ' : 'Show month-by-month breakdown '; }
+</script>
+</body>
+</html>
