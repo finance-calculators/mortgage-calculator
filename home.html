@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Finance Calculators – Mortgage, Auto, Loan & More</title>
+  <meta name="description" content="Free online finance calculators for mortgages, auto loans, personal loans, debt payoff, and rent vs buy decisions. No sign-up required."/>
+  <meta name="keywords" content="finance calculators, mortgage calculator, auto loan calculator, personal loan calculator, debt payoff calculator, rent vs buy"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fafaf7; --ink: #1a1a18; --muted: #6b6b60;
+      --border: #e8e4dc; --radius: 16px;
+      --shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+    .page-wrap { max-width: 900px; margin: 0 auto; padding: 60px 20px 100px; }
+
+    /* Hero */
+    .hero { text-align: center; margin-bottom: 70px; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #2d5f3f; background: #e8f0eb; border: 1px solid #c5dac9; padding: 6px 16px; border-radius: 100px; margin-bottom: 24px; }
+    .badge::before { content: '●'; font-size: 8px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 18px; }
+    h1 em { font-style: italic; color: #2d5f3f; }
+    .hero-sub { font-size: 17px; color: var(--muted); max-width: 480px; margin: 0 auto 32px; line-height: 1.65; }
+    .hero-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+    .pill { background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 5px 14px; font-size: 13px; color: var(--muted); }
+
+    /* Grid */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+    .tool-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      text-decoration: none;
+      color: var(--ink);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .tool-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--clr);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .tool-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.1); border-color: var(--clr, var(--border)); }
+    .tool-card:hover::before { transform: scaleX(1); }
+
+    .tool-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+    .tool-name { font-family: 'DM Serif Display', serif; font-size: 1.3rem; margin-bottom: 8px; }
+    .tool-desc { font-size: 14px; color: var(--muted); line-height: 1.55; margin-bottom: 18px; }
+    .tool-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; padding: 3px 10px; border-radius: 100px; background: color-mix(in srgb, var(--clr) 12%, white); color: var(--clr); }
+    .tool-arrow { position: absolute; top: 28px; right: 28px; font-size: 18px; opacity: 0.2; transition: opacity 0.2s, transform 0.2s; }
+    .tool-card:hover .tool-arrow { opacity: 0.7; transform: translate(3px, -3px); }
+
+    /* Why section */
+    .why-section { margin-top: 72px; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); margin-bottom: 40px; }
+    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .why-item { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+    .why-icon { font-size: 24px; margin-bottom: 12px; }
+    .why-title { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+    .why-text { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+
+    footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted); line-height: 1.7; }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <div class="hero">
+    <div class="badge">Free · No Sign-up Required</div>
+    <h1>Smart <em>Finance</em><br>Calculators</h1>
+    <p class="hero-sub">Free, instant calculators for your biggest financial decisions. No ads on results, no email required.</p>
+    <div class="hero-pills">
+      <span class="pill">✓ Instant Results</span>
+      <span class="pill">✓ Mobile Friendly</span>
+      <span class="pill">✓ No Registration</span>
+      <span class="pill">✓ 100% Free</span>
+    </div>
+  </div>
+
+  <div class="tools-grid">
+
+    <a href="index.html" class="tool-card" style="--clr: #2d5f3f">
+      <span class="tool-arrow">↗</span>
+      <span class="tool-icon">🏠</span>
+      <div class="tool-name">Mortgage Calculator</div>
+      <div class="tool-desc">Calculate your monthly mortgage payment, total interest, and full amortization schedule for any home loan.</div>
+      <div class="tool-tags"><span class="tag">Home Loan</span><span class="tag">Amortization</span></div>
+    </a>
+
+    <a href="auto-loan.html" class="tool-card" style="--clr: #1e40af">
+      <span class="tool-arrow">↗</span>
+      <span class="tool-icon">🚗</span>
+      <div class="tool-name">Auto Loan Calculator</div>
+      <div class="tool-desc">Find your monthly car payment and see how trade-in value and down payment affect your total cost.</div>
+      <div class="tool-tags"><span class="tag">Car Loan</span><span class="tag">Vehicle</span></div>
+    </a>
+
+    <a href="personal-loan.html" class="tool-card" style="--clr: #7c3aed">
+      <span class="tool-arrow">↗</span>
+      <span class="tool-icon">💳</span>
+      <div class="tool-name">Personal Loan Calculator</div>
+      <div class="tool-desc">Estimate monthly payments for any personal loan amount and term. Includes origination fee calculator.</div>
+      <div class="tool-tags"><span class="tag">Personal Loan</span><span class="tag">APR</span></div>
+    </a>
+
+    <a href="debt-payoff.html" class="tool-card" style="--clr: #dc2626">
+      <span class="tool-arrow">↗</span>
+      <span class="tool-icon">💸</span>
+      <div class="tool-name">Debt Payoff Calculator</div>
+      <div class="tool-desc">See how extra payments save you thousands in interest. Compare minimum payments vs. accelerated payoff.</div>
+      <div class="tool-tags"><span class="tag">Debt Free</span><span class="tag">Credit Card</span></div>
+    </a>
+
+    <a href="rent-vs-buy.html" class="tool-card" style="--clr: #0369a1">
+      <span class="tool-arrow">↗</span>
+      <span class="tool-icon">⚖️</span>
+      <div class="tool-name">Rent vs Buy Calculator</div>
+      <div class="tool-desc">Is it smarter to rent or buy? Enter your numbers and get a clear financial comparison over any time horizon.</div>
+      <div class="tool-tags"><span class="tag">Real Estate</span><span class="tag">Decision</span></div>
+    </a>
+
+  </div>
+
+  <div class="why-section">
+    <div class="section-label">Why use our calculators</div>
+    <div class="section-title">Built for clarity, not confusion</div>
+    <div class="why-grid">
+      <div class="why-item"><div class="why-icon">⚡</div><div class="why-title">Instant Results</div><div class="why-text">No loading screens. Results appear as you type.</div></div>
+      <div class="why-item"><div class="why-icon">🔒</div><div class="why-title">Private</div><div class="why-text">All calculations happen in your browser. We never see your numbers.</div></div>
+      <div class="why-item"><div class="why-icon">📱</div><div class="why-title">Mobile Ready</div><div class="why-text">Works perfectly on any screen — phone, tablet, or desktop.</div></div>
+      <div class="why-item"><div class="why-icon">🆓</div><div class="why-title">Always Free</div><div class="why-text">No subscriptions, no sign-ups, no hidden costs. Ever.</div></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>All calculators are for informational and educational purposes only.<br>
+    Results are estimates. Please consult a licensed financial professional before making major financial decisions.</p>
+  </footer>
+</div>
+</body>
+</html>
