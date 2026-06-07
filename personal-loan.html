@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Personal Loan Calculator – Monthly Payment Estimator</title>
-  <meta name="description" content="Free personal loan calculator. Instantly calculate your monthly payment, total cost, and amortization schedule for any personal loan."/>
-  <meta name="keywords" content="personal loan calculator, loan payment calculator, monthly payment estimator, loan interest calculator"/>
+  <title>Personal Loan Calculator – Rate & Monthly Payment Estimator</title>
+  <meta name="description" content="Free personal loan rate calculator. Estimate your monthly payment, total interest, and loan cost at any rate. Compare personal loan rates instantly — no sign-up required."/>
+  <meta name="keywords" content="personal loan calculator, personal loan rate calculator, personal loan estimator, personal loans calculator, loan payment calculator, personal loan monthly payment calculator, personal loan term calculator"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -180,5 +180,114 @@
   }
   function toggleAmort() { const w = document.getElementById('amortWrap'); const b = document.getElementById('amortToggle'); w.classList.toggle('visible'); b.classList.toggle('open'); b.childNodes[0].textContent = w.classList.contains('visible') ? 'Hide schedule ' : 'Show month-by-month breakdown '; }
 </script>
+
+<!-- How It Works + FAQ -->
+<div style="max-width:960px;margin:60px auto 0;padding:0 20px 80px">
+
+  <!-- How to use -->
+  <div style="background:#fff;border:1px solid #e9e3f5;border-radius:16px;padding:32px;margin-bottom:32px">
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin-bottom:20px;color:#1a1a2e">How to Use This Personal Loan Rate Calculator</h2>
+    <p style="font-size:15px;color:#444;line-height:1.75;margin-bottom:12px">This free personal loan estimator helps you calculate your exact monthly payment before you apply for a loan. Simply enter your loan amount, term, and interest rate to get instant results.</p>
+    <ol style="margin-left:20px;color:#444;font-size:15px;line-height:2">
+      <li><strong>Enter loan amount</strong> — use the slider or type the amount directly</li>
+      <li><strong>Select loan term</strong> — from 12 to 84 months</li>
+      <li><strong>Enter interest rate</strong> — use your lender's quoted APR</li>
+      <li><strong>Add origination fee</strong> (optional) — some lenders charge 1-8%</li>
+      <li><strong>Click Calculate</strong> — see your monthly payment instantly</li>
+    </ol>
+    <p style="font-size:15px;color:#444;line-height:1.75;margin-top:12px">Try different loan amounts and terms to find the monthly payment that fits your budget. Shorter terms mean higher payments but less total interest paid.</p>
+  </div>
+
+  <!-- Personal Loan Rates Table -->
+  <div style="background:#fff;border:1px solid #e9e3f5;border-radius:16px;padding:32px;margin-bottom:32px">
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin-bottom:20px;color:#1a1a2e">Personal Loan Rates in 2025</h2>
+    <p style="font-size:15px;color:#444;line-height:1.75;margin-bottom:20px">Personal loan rates vary widely based on your credit score. Here are typical rates you can expect:</p>
+    <table style="width:100%;border-collapse:collapse;font-size:14px">
+      <thead>
+        <tr style="background:#7c3aed;color:#fff">
+          <th style="padding:12px 16px;text-align:left;border-radius:8px 0 0 0">Credit Score</th>
+          <th style="padding:12px 16px;text-align:left">Credit Rating</th>
+          <th style="padding:12px 16px;text-align:left;border-radius:0 8px 0 0">Typical APR Range</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #e9e3f5;background:#fdfcff">
+          <td style="padding:11px 16px">720 – 850</td>
+          <td style="padding:11px 16px;color:#16a34a;font-weight:600">Excellent</td>
+          <td style="padding:11px 16px">6% – 12%</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e9e3f5">
+          <td style="padding:11px 16px">690 – 719</td>
+          <td style="padding:11px 16px;color:#2563eb;font-weight:600">Good</td>
+          <td style="padding:11px 16px">12% – 18%</td>
+        </tr>
+        <tr style="border-bottom:1px solid #e9e3f5;background:#fdfcff">
+          <td style="padding:11px 16px">630 – 689</td>
+          <td style="padding:11px 16px;color:#d97706;font-weight:600">Fair</td>
+          <td style="padding:11px 16px">18% – 28%</td>
+        </tr>
+        <tr style="background:#fff">
+          <td style="padding:11px 16px">Below 630</td>
+          <td style="padding:11px 16px;color:#dc2626;font-weight:600">Poor</td>
+          <td style="padding:11px 16px">28% – 36%+</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:#7c6f8e;margin-top:12px">Use the calculator above to see how different rates affect your monthly payment and total cost.</p>
+  </div>
+
+  <!-- FAQ -->
+  <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:24px;color:#1a1a2e">Frequently Asked Questions</h2>
+
+  <div style="border:1px solid #e9e3f5;border-radius:12px;padding:24px;margin-bottom:16px;background:#fff">
+    <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;color:#1a1a2e">What is a personal loan rate calculator?</h3>
+    <p style="font-size:15px;color:#444;line-height:1.7;margin:0">A personal loan rate calculator is a free tool that shows you exactly how much you'll pay each month based on your loan amount, interest rate, and repayment term. It helps you compare different loan options and find a payment that fits your budget before you apply.</p>
+  </div>
+
+  <div style="border:1px solid #e9e3f5;border-radius:12px;padding:24px;margin-bottom:16px;background:#fff">
+    <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;color:#1a1a2e">How do I estimate my personal loan payment?</h3>
+    <p style="font-size:15px;color:#444;line-height:1.7;margin:0">To estimate your personal loan payment, you need three numbers: your loan amount, your interest rate (APR), and your loan term in months. Enter these into our personal loan estimator above and click Calculate — you'll instantly see your monthly payment, total interest, and full amortization schedule.</p>
+  </div>
+
+  <div style="border:1px solid #e9e3f5;border-radius:12px;padding:24px;margin-bottom:16px;background:#fff">
+    <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;color:#1a1a2e">What is a good personal loan interest rate in 2025?</h3>
+    <p style="font-size:15px;color:#444;line-height:1.7;margin:0">A good personal loan rate in 2025 is anything below 12% APR, which typically requires a credit score of 720 or higher. The average personal loan rate across all credit scores is around 12-20%. Rates above 25% are generally considered high — at that level, consider improving your credit score before borrowing.</p>
+  </div>
+
+  <div style="border:1px solid #e9e3f5;border-radius:12px;padding:24px;margin-bottom:16px;background:#fff">
+    <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;color:#1a1a2e">How much does a $10,000 personal loan cost per month?</h3>
+    <p style="font-size:15px;color:#444;line-height:1.7;margin:0">A $10,000 personal loan at 10.5% APR over 60 months costs approximately $215/month, with $2,900 in total interest. At 18% APR for the same term, the payment rises to $254/month with $5,240 in total interest. Use our calculator above to get exact numbers for your specific rate and term.</p>
+  </div>
+
+  <div style="border:1px solid #e9e3f5;border-radius:12px;padding:24px;margin-bottom:16px;background:#fff">
+    <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;color:#1a1a2e">What is the difference between APR and interest rate on a personal loan?</h3>
+    <p style="font-size:15px;color:#444;line-height:1.7;margin:0">The interest rate is the cost of borrowing the principal. The APR (Annual Percentage Rate) includes the interest rate plus any fees like origination fees, making it the true cost of the loan. Always compare loans using APR, not just the interest rate. Our calculator includes an origination fee field so you can calculate the true total cost.</p>
+  </div>
+
+  <div style="border:1px solid #e9e3f5;border-radius:12px;padding:24px;margin-bottom:16px;background:#fff">
+    <h3 style="font-size:16px;font-weight:600;margin-bottom:10px;color:#1a1a2e">What loan term should I choose for a personal loan?</h3>
+    <p style="font-size:15px;color:#444;line-height:1.7;margin:0">Shorter terms (24-36 months) mean higher monthly payments but significantly less interest paid overall. Longer terms (60-84 months) have lower monthly payments but cost more in total interest. Choose the shortest term where the monthly payment is comfortably within your budget — typically no more than 15% of your monthly take-home pay.</p>
+  </div>
+
+  <!-- Related links -->
+  <div style="margin-top:40px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#7c6f8e;margin-bottom:16px">Related Calculators</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+      <a href="mortgage-calculator.html" style="display:block;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:16px;text-decoration:none;color:#1a1a2e">
+        <div style="font-weight:600;font-size:14px;margin-bottom:4px">🏠 Mortgage Calculator</div>
+        <div style="font-size:12px;color:#7c6f8e">Monthly payment + amortization</div>
+      </a>
+      <a href="auto-loan.html" style="display:block;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:16px;text-decoration:none;color:#1a1a2e">
+        <div style="font-weight:600;font-size:14px;margin-bottom:4px">🚗 Auto Loan Calculator</div>
+        <div style="font-size:12px;color:#7c6f8e">True cost of your car loan</div>
+      </a>
+      <a href="debt-payoff.html" style="display:block;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:16px;text-decoration:none;color:#1a1a2e">
+        <div style="font-weight:600;font-size:14px;margin-bottom:4px">💸 Debt Payoff Calculator</div>
+        <div style="font-size:12px;color:#7c6f8e">Pay off debt faster</div>
+      </a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
