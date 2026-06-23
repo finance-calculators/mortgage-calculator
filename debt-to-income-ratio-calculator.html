@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Debt-to-Income Ratio Calculator & Guide 2025</title>
+  <meta name="description" content="Learn how to calculate your debt-to-income ratio (DTI) and what lenders look for in 2025. Includes a free DTI calculator and tips to improve your ratio."/>
+  <meta name="keywords" content="debt to income ratio calculator, what is debt to income ratio, how to calculate debt to income ratio, DTI ratio mortgage, debt to income ratio for home loan"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #fafaf7; --ink: #1a1a18; --muted: #6b6b60; --accent: #1e40af; --accent-light: #eff6ff; --border: #e8e4dc; --shadow: 0 2px 20px rgba(0,0,0,0.06); --radius: 12px; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.75; }
+    .page-wrap { max-width: 780px; margin: 0 auto; padding: 40px 20px 100px; }
+    .nav { display: flex; justify-content: center; margin-bottom: 40px; }
+    .nav a { color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: 8px; }
+    .nav a:hover { background: var(--accent-light); }
+    .eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); border: 1px solid #bfdbfe; padding: 5px 14px; border-radius: 100px; margin-bottom: 20px; }
+    h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.2; margin-bottom: 16px; }
+    .meta { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    .intro { font-size: 17px; color: #444; line-height: 1.8; padding: 24px; background: var(--accent-light); border-left: 4px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; margin-bottom: 40px; }
+    h2 { font-family: 'DM Serif Display', serif; font-size: 1.7rem; margin: 48px 0 16px; }
+    h3 { font-size: 1.1rem; font-weight: 600; margin: 28px 0 10px; }
+    p { margin-bottom: 18px; font-size: 16px; color: #333; line-height: 1.8; }
+    ul, ol { margin: 0 0 18px 24px; }
+    li { margin-bottom: 8px; font-size: 16px; color: #333; }
+    table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+    thead th { background: var(--accent); color: #fff; padding: 12px 16px; text-align: left; font-size: 13px; }
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:nth-child(even) td { background: var(--accent-light); }
+    tbody tr:last-child { border-bottom: none; }
+    tbody td { padding: 11px 16px; }
+    .dti-calc { background: #fff; border: 2px solid var(--accent); border-radius: var(--radius); padding: 32px; margin: 32px 0; box-shadow: var(--shadow); }
+    .dti-calc h3 { color: var(--accent); margin-top: 0; margin-bottom: 20px; font-size: 1.2rem; }
+    .calc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    @media(max-width:500px){.calc-row{grid-template-columns:1fr}}
+    .calc-field label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 6px; }
+    .calc-field input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; outline: none; -moz-appearance: textfield; }
+    .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .calc-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(30,64,175,0.1); }
+    .calc-btn { width: 100%; padding: 13px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; margin-top: 8px; }
+    .calc-btn:hover { background: #1e3a8a; }
+    .dti-result { margin-top: 20px; padding: 20px; border-radius: 10px; text-align: center; display: none; }
+    .dti-result.excellent { background: #dcfce7; border: 2px solid #86efac; }
+    .dti-result.good { background: #dbeafe; border: 2px solid #93c5fd; }
+    .dti-result.warning { background: #fef9c3; border: 2px solid #fde047; }
+    .dti-result.danger { background: #fee2e2; border: 2px solid #fca5a5; }
+    .dti-number { font-family: 'DM Serif Display', serif; font-size: 2.5rem; display: block; margin-bottom: 4px; }
+    .dti-label { font-weight: 600; font-size: 15px; }
+    .dti-advice { font-size: 14px; margin-top: 8px; color: #555; }
+    .highlight { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin: 28px 0; box-shadow: var(--shadow); }
+    .highlight.green { border-left: 4px solid #16a34a; background: #f0fdf4; }
+    .highlight.blue { border-left: 4px solid var(--accent); background: var(--accent-light); }
+    .highlight h4 { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 10px; color: var(--accent); }
+    .cta { background: var(--accent); color: #fff; border-radius: var(--radius); padding: 32px; text-align: center; margin: 48px 0; }
+    .cta h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 10px; }
+    .cta p { opacity: 0.85; margin-bottom: 20px; font-size: 15px; }
+    .cta a { display: inline-block; background: #fff; color: var(--accent); padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 15px; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; margin-bottom: 14px; background: #fff; }
+    .faq-item h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; margin-top: 0; }
+    .faq-item p { margin: 0; font-size: 14px; color: #444; }
+    .related { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px; margin-top: 16px; }
+    .related a { display: block; background: var(--accent-light); border: 1px solid #bfdbfe; border-radius: 10px; padding: 14px; text-decoration: none; color: var(--ink); font-size: 13px; font-weight: 500; }
+    footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); text-align: center; font-size: 13px; color: var(--muted); }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <nav class="nav"><a href="index.html">← Back to All Calculators</a></nav>
+  <div class="eyebrow">Finance Guide · 2025</div>
+  <h1>Debt-to-Income Ratio: Calculator & Complete Guide</h1>
+  <div class="meta">7 min read · Updated June 2025</div>
+  <div class="intro">Your debt-to-income ratio (DTI) is one of the most important numbers lenders look at when you apply for a mortgage, car loan, or personal loan. Here's exactly how to calculate it and what to do if it's too high.</div>
+
+  <h2>Free DTI Calculator</h2>
+
+  <div class="dti-calc">
+    <h3>Calculate Your Debt-to-Income Ratio</h3>
+    <div class="calc-row">
+      <div class="calc-field"><label>Monthly Gross Income</label><input type="number" id="income" placeholder="e.g. 5000"/></div>
+      <div class="calc-field"><label>Monthly Rent/Mortgage</label><input type="number" id="housing" placeholder="e.g. 1200"/></div>
+    </div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Car Payment</label><input type="number" id="car" placeholder="e.g. 400"/></div>
+      <div class="calc-field"><label>Student Loans</label><input type="number" id="student" placeholder="e.g. 300"/></div>
+    </div>
+    <div class="calc-row">
+      <div class="calc-field"><label>Credit Card Minimums</label><input type="number" id="credit" placeholder="e.g. 150"/></div>
+      <div class="calc-field"><label>Other Monthly Debts</label><input type="number" id="other" placeholder="e.g. 0"/></div>
+    </div>
+    <button class="calc-btn" onclick="calcDTI()">Calculate My DTI →</button>
+    <div class="dti-result" id="dtiResult">
+      <span class="dti-number" id="dtiNumber">0%</span>
+      <div class="dti-label" id="dtiLabel">—</div>
+      <div class="dti-advice" id="dtiAdvice">—</div>
+    </div>
+  </div>
+
+  <h2>What Is Debt-to-Income Ratio?</h2>
+  <p>Your debt-to-income ratio (DTI) is the percentage of your gross monthly income that goes toward paying debts. Lenders use it to evaluate whether you can handle additional loan payments.</p>
+  <div class="highlight blue">
+    <h4>The DTI Formula</h4>
+    <p style="font-size:18px;font-weight:600;color:var(--accent);text-align:center;padding:12px 0">DTI = Total Monthly Debt Payments ÷ Gross Monthly Income × 100</p>
+    <p>Example: $1,500 in monthly debts ÷ $5,000 gross income = <strong>30% DTI</strong></p>
+  </div>
+
+  <h2>What Is a Good DTI Ratio?</h2>
+  <table>
+    <thead><tr><th>DTI Range</th><th>Rating</th><th>What It Means</th></tr></thead>
+    <tbody>
+      <tr><td>Below 20%</td><td style="color:#16a34a;font-weight:600">Excellent</td><td>Excellent financial health, best loan rates</td></tr>
+      <tr><td>20% – 35%</td><td style="color:#2563eb;font-weight:600">Good</td><td>Manageable debt, easy loan approval</td></tr>
+      <tr><td>36% – 43%</td><td style="color:#d97706;font-weight:600">Acceptable</td><td>May qualify for mortgage but harder to approve</td></tr>
+      <tr><td>44% – 50%</td><td style="color:#dc2626;font-weight:600">High</td><td>Difficult to get approved, high risk</td></tr>
+      <tr><td>Above 50%</td><td style="color:#991b1b;font-weight:600">Too High</td><td>Most lenders will deny application</td></tr>
+    </tbody>
+  </table>
+
+  <h2>DTI Requirements by Loan Type</h2>
+  <table>
+    <thead><tr><th>Loan Type</th><th>Maximum DTI</th><th>Ideal DTI</th></tr></thead>
+    <tbody>
+      <tr><td>Conventional Mortgage</td><td>45-50%</td><td>Below 36%</td></tr>
+      <tr><td>FHA Loan</td><td>57%</td><td>Below 43%</td></tr>
+      <tr><td>VA Loan</td><td>41% (guideline)</td><td>Below 36%</td></tr>
+      <tr><td>Personal Loan</td><td>40-50%</td><td>Below 35%</td></tr>
+      <tr><td>Auto Loan</td><td>50%</td><td>Below 40%</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Front-End vs Back-End DTI</h2>
+  <p>Mortgage lenders actually look at two DTI ratios:</p>
+  <ul>
+    <li><strong>Front-end DTI (housing ratio):</strong> Only housing costs (mortgage, taxes, insurance) ÷ gross income. Should be below 28%.</li>
+    <li><strong>Back-end DTI (total DTI):</strong> ALL monthly debt payments ÷ gross income. Should be below 36-43%.</li>
+  </ul>
+  <div class="highlight green">
+    <h4>Example Calculation</h4>
+    <p>Gross monthly income: $6,000</p>
+    <ul style="margin-top:8px">
+      <li>Mortgage payment: $1,400 | Front-end DTI: 1,400 ÷ 6,000 = <strong>23%</strong> ✅</li>
+      <li>Car loan: $400, Student loans: $300, Credit cards: $150</li>
+      <li>Total debts: $2,250 | Back-end DTI: 2,250 ÷ 6,000 = <strong>37.5%</strong> ✅</li>
+    </ul>
+  </div>
+
+  <h2>How to Lower Your DTI Ratio</h2>
+
+  <h3>Option 1: Pay Down Debt (Best Long-Term)</h3>
+  <ul>
+    <li>Pay off the smallest debts first to eliminate monthly payments quickly</li>
+    <li>Focus extra payments on high-interest debt</li>
+    <li>Avoid taking on new debt before applying for a mortgage</li>
+  </ul>
+
+  <h3>Option 2: Increase Your Income</h3>
+  <ul>
+    <li>Ask for a raise or seek a higher-paying job</li>
+    <li>Add a part-time job or side income</li>
+    <li>Include all income sources (freelance, rental income, alimony) when calculating</li>
+  </ul>
+
+  <h3>Option 3: Refinance Existing Debt</h3>
+  <ul>
+    <li>Refinance student loans to lower monthly payment</li>
+    <li>Consolidate high-rate debt into a lower-rate personal loan</li>
+    <li>Extend car loan term to reduce monthly payment (costs more interest long-term)</li>
+  </ul>
+
+  <h3>How Much Can You Lower DTI?</h3>
+  <table>
+    <thead><tr><th>Action</th><th>Monthly Debt Reduction</th><th>DTI Impact (on $5k income)</th></tr></thead>
+    <tbody>
+      <tr><td>Pay off $5,000 credit card</td><td>-$150/month min payment</td><td>-3% DTI</td></tr>
+      <tr><td>Pay off car loan ($10k)</td><td>-$350/month</td><td>-7% DTI</td></tr>
+      <tr><td>Side job ($800/month more)</td><td>Income increase</td><td>-5% DTI</td></tr>
+      <tr><td>Refinance student loans</td><td>-$150/month</td><td>-3% DTI</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cta">
+    <h3>Calculate Your Mortgage Payment</h3>
+    <p>Once you know your DTI, see what mortgage payment fits your budget.</p>
+    <a href="mortgage-calculator.html">Use Free Mortgage Calculator →</a>
+  </div>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <div class="faq-item">
+    <h3>What is a good debt-to-income ratio for a mortgage?</h3>
+    <p>Most lenders want a back-end DTI below 43% for mortgage approval. The ideal is below 36%. For the best rates and easiest approval, aim for a DTI below 28% for housing costs alone (front-end DTI) and below 36% for all debts combined (back-end DTI).</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>How do I calculate my debt-to-income ratio?</h3>
+    <p>Add up all your monthly debt payments (mortgage/rent, car loans, student loans, credit card minimums, personal loans). Divide by your gross monthly income (before taxes). Multiply by 100 to get the percentage. Use our calculator above for instant results.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Does DTI affect my credit score?</h3>
+    <p>DTI does not directly affect your credit score — credit bureaus don't track your income. However, high debt levels do affect your credit utilization ratio (30% of your score), and the high payments that come with high DTI make it harder to pay bills on time, which affects payment history (35% of your score).</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>What debts are included in DTI calculation?</h3>
+    <p>Include all monthly debt payments: mortgage or rent, car loans, student loans, credit card minimum payments, personal loans, child support, and alimony. Do NOT include utility bills, groceries, insurance premiums, or other living expenses — these are not debts.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Can I get a mortgage with a 50% DTI?</h3>
+    <p>It's difficult but possible. FHA loans allow DTI up to 57% in some cases. However, lenders may require compensating factors like a high credit score (740+), large down payment (20%+), or significant cash reserves. A 50% DTI means half your income goes to debt — most financial experts recommend getting it below 43% before buying.</p>
+  </div>
+
+  <div style="margin-top:48px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:16px">Related Calculators & Guides</div>
+    <div class="related">
+      <a href="mortgage-calculator.html">🏠 Mortgage Calculator</a>
+      <a href="debt-payoff.html">💸 Debt Payoff Calculator</a>
+      <a href="personal-loan.html">💳 Personal Loan Calculator</a>
+      <a href="how-much-house-can-i-afford.html">📊 Affordability Guide</a>
+    </div>
+  </div>
+  <footer><p>This article is for informational purposes only. Consult a licensed financial professional before making financial decisions.</p></footer>
+</div>
+<script>
+  function calcDTI() {
+    const income = +document.getElementById('income').value || 0;
+    const housing = +document.getElementById('housing').value || 0;
+    const car = +document.getElementById('car').value || 0;
+    const student = +document.getElementById('student').value || 0;
+    const credit = +document.getElementById('credit').value || 0;
+    const other = +document.getElementById('other').value || 0;
+    if (!income) { alert('Please enter your monthly income'); return; }
+    const totalDebt = housing + car + student + credit + other;
+    const dti = Math.round((totalDebt / income) * 100);
+    const result = document.getElementById('dtiResult');
+    document.getElementById('dtiNumber').textContent = dti + '%';
+    result.style.display = 'block';
+    result.className = 'dti-result';
+    if (dti < 20) {
+      result.classList.add('excellent');
+      document.getElementById('dtiLabel').textContent = '🎉 Excellent DTI';
+      document.getElementById('dtiAdvice').textContent = 'You\'re in great financial shape. You\'ll qualify for the best loan rates available.';
+    } else if (dti < 36) {
+      result.classList.add('good');
+      document.getElementById('dtiLabel').textContent = '✅ Good DTI';
+      document.getElementById('dtiAdvice').textContent = 'Your DTI is manageable. You should have no trouble qualifying for most loans.';
+    } else if (dti < 44) {
+      result.classList.add('warning');
+      document.getElementById('dtiLabel').textContent = '⚠️ Acceptable but High';
+      document.getElementById('dtiAdvice').textContent = 'You may qualify for a mortgage but lenders will scrutinize your application. Try to pay down some debt first.';
+    } else {
+      result.classList.add('danger');
+      document.getElementById('dtiLabel').textContent = '❌ DTI Too High';
+      document.getElementById('dtiAdvice').textContent = 'Most lenders will have difficulty approving you at this DTI. Focus on paying down debt or increasing income before applying.';
+    }
+  }
+</script>
+</body>
+</html>
