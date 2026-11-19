@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Auto Loan Calculator – Monthly Car Payment Estimator</title>
-  <meta name="description" content="Free auto loan calculator. Calculate your monthly car payment, total interest, and full amortization for any US auto loan."/>
+  <title>Auto Loan Calculator – Car Payment Calculator with Trade-In & Down Payment (2026)</title>
+  <meta name="description" content="Free auto loan calculator. See your monthly car payment, total interest and amortization schedule with trade-in and down payment included. A $35,000 loan at 7.5% = $701/mo over 60 months."/>
   <meta name="keywords" content="auto loan calculator, car payment calculator, vehicle loan calculator, car financing calculator"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -76,6 +76,77 @@
     .nav a:hover { background: var(--accent-light); }
     footer { text-align: center; margin-top: 60px; font-size: 13px; color: var(--muted); line-height: 1.7; }
   </style>
+
+  <link rel="canonical" href="https://finance-calculators.github.io/mortgage-calculator/auto-loan.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Auto Loan Calculator – Car Payment Calculator with Trade-In & Down Payment (2026)"/>
+  <meta property="og:description" content="Free auto loan calculator. See your monthly car payment, total interest and amortization schedule with trade-in and down payment included. A $35,000 loan at 7.5% = $701/mo over 60 months."/>
+  <meta property="og:url" content="https://finance-calculators.github.io/mortgage-calculator/auto-loan.html"/>
+  <meta name="twitter:card" content="summary"/>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Auto Loan Calculator",
+  "url": "https://finance-calculators.github.io/mortgage-calculator/auto-loan.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free auto loan calculator. See your monthly car payment, total interest and amortization schedule with trade-in and down payment included. A $35,000 loan at 7.5% = $701/mo over 60 months."
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How is a car loan payment calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The same amortization formula as any loan: your loan amount (vehicle price minus down payment and trade-in) is spread over the term at your interest rate. A $35,000 loan at 7.5% for 60 months costs $701/mo and $7,080 in total interest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a 60-month or 72-month auto loan better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A 72-month loan lowers the payment \u2014 $605/mo vs $701/mo on $35,000 at 7.5% \u2014 but costs $1,491 more in interest and increases the risk of owing more than the car is worth. Keep terms at 60 months or less when you can."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does my trade-in actually save me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A trade-in reduces the amount you finance dollar for dollar, and in most US states it also reduces the sales tax you pay. A $5,000 trade-in on a $35,000 car saves roughly $105/mo on a 60-month loan at 7.5%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What credit score do I need for the best auto loan rates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Borrowers with scores above 720 typically qualify for the lowest dealer and bank rates. Scores below 620 often mean rates above 12%, which can add thousands in interest \u2014 check the total interest figure, not just the monthly payment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I get pre-approved before visiting a dealer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A bank or credit union pre-approval gives you a rate to beat and turns the dealer conversation into a negotiation about price, not financing. Dealers can sometimes beat your pre-approved rate through their lender network."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="page-wrap">
@@ -179,5 +250,14 @@
   }
   function toggleAmort() { const w = document.getElementById('amortWrap'); const b = document.getElementById('amortToggle'); w.classList.toggle('visible'); b.classList.toggle('open'); b.childNodes[0].textContent = w.classList.contains('visible') ? 'Hide schedule ' : 'Show month-by-month breakdown '; }
 </script>
+<section style="max-width:960px;margin:36px auto 0;padding:36px 32px;background:#fff;border:1px solid #e5e2da;border-radius:16px;line-height:1.75;font-size:15.5px;color:#2a2a26"><h2 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin:24px 0 12px">How to Use This Auto Loan Calculator</h2>
+<p style="margin-bottom:12px">Enter the vehicle price, your down payment and trade-in value, the loan term and the interest rate. The calculator shows your monthly payment, the total interest over the life of the loan, and a month-by-month amortization schedule so you can see exactly how much of each payment goes to interest.</p>
+<h2 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin:24px 0 12px">What Your Car Payment Really Costs</h2>
+<p style="margin-bottom:12px">On a $35,000 loan at 7.5%, a 60-month term costs $701/mo and $7,080 in interest. Stretching to 72 months drops the payment to $605/mo but raises interest to $8,571 — and because cars lose value fastest in the first years, a longer loan can leave you owing more than the car is worth. That is why the total interest figure matters more than the monthly payment a salesperson quotes you.</p>
+<h2 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin:24px 0 12px">3 Ways to Lower Your Auto Loan Cost</h2>
+<p style="margin-bottom:12px">1. <strong>Put more down or trade in</strong> — every $1,000 less financed saves about $20/mo on a 60-month loan.<br>
+2. <strong>Shorten the term</strong> — 48 or 60 months instead of 72 or 84.<br>
+3. <strong>Get pre-approved</strong> — then let the dealer try to beat your rate. Buying a car with a personal loan instead? Compare with our <a href="car-loan-vs-personal-loan.html" style="color:#2d5f3f">car loan vs personal loan guide</a>, estimate a cash purchase with the <a href="personal-loan.html" style="color:#2d5f3f">personal loan calculator</a>, and check your <a href="debt-to-income-ratio-calculator.html" style="color:#2d5f3f">debt-to-income ratio</a> before you apply.</p>
+<h2 style="font-family:'DM Serif Display',serif;font-size:1.6rem;margin:24px 0 12px">Frequently Asked Questions</h2><h3 style="font-size:16.5px;margin:16px 0 6px">How is a car loan payment calculated?</h3><p style="margin-bottom:12px">The same amortization formula as any loan: your loan amount (vehicle price minus down payment and trade-in) is spread over the term at your interest rate. A $35,000 loan at 7.5% for 60 months costs $701/mo and $7,080 in total interest.</p><h3 style="font-size:16.5px;margin:16px 0 6px">Is a 60-month or 72-month auto loan better?</h3><p style="margin-bottom:12px">A 72-month loan lowers the payment — $605/mo vs $701/mo on $35,000 at 7.5% — but costs $1,491 more in interest and increases the risk of owing more than the car is worth. Keep terms at 60 months or less when you can.</p><h3 style="font-size:16.5px;margin:16px 0 6px">How much does my trade-in actually save me?</h3><p style="margin-bottom:12px">A trade-in reduces the amount you finance dollar for dollar, and in most US states it also reduces the sales tax you pay. A $5,000 trade-in on a $35,000 car saves roughly $105/mo on a 60-month loan at 7.5%.</p><h3 style="font-size:16.5px;margin:16px 0 6px">What credit score do I need for the best auto loan rates?</h3><p style="margin-bottom:12px">Borrowers with scores above 720 typically qualify for the lowest dealer and bank rates. Scores below 620 often mean rates above 12%, which can add thousands in interest — check the total interest figure, not just the monthly payment.</p><h3 style="font-size:16.5px;margin:16px 0 6px">Should I get pre-approved before visiting a dealer?</h3><p style="margin-bottom:12px">Yes. A bank or credit union pre-approval gives you a rate to beat and turns the dealer conversation into a negotiation about price, not financing. Dealers can sometimes beat your pre-approved rate through their lender network.</p></section>
 </body>
 </html>

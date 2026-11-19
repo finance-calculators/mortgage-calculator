@@ -3,8 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mortgage Calculator – Monthly Payment Estimator</title>
-  <meta name="description" content="Free mortgage calculator. Instantly calculate your monthly mortgage payment, total interest, and full amortization schedule for any US home loan."/>
+  <title>Mortgage Calculator with Taxes, Insurance & PMI – Free Monthly Payment Calculator (2026)</title>
+  <meta name="description" content="Free mortgage calculator with taxes, insurance and PMI. A $400,000 home at 6.8% costs about $2,603/mo all-in. Calculate your exact monthly payment, total interest and amortization schedule — no sign-up."/>
+  <link rel="canonical" href="https://finance-calculators.github.io/mortgage-calculator/mortgage-calculator.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Mortgage Calculator with Taxes, Insurance & PMI (2026)"/>
+  <meta property="og:description" content="Calculate your real monthly mortgage payment — principal, interest, taxes, insurance and PMI included. Free, instant, no sign-up."/>
+  <meta property="og:url" content="https://finance-calculators.github.io/mortgage-calculator/mortgage-calculator.html"/>
+  <meta name="twitter:card" content="summary"/>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mortgage Calculator with Taxes, Insurance & PMI",
+    "url": "https://finance-calculators.github.io/mortgage-calculator/mortgage-calculator.html",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "Free mortgage calculator that estimates monthly principal, interest, property taxes, homeowners insurance and PMI, with a full amortization schedule."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "How is a monthly mortgage payment calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Your lender uses the formula M = P × r(1+r)^n ÷ [(1+r)^n − 1], where P is the loan amount, r is the monthly interest rate (annual rate ÷ 12), and n is the total number of payments. On top of principal and interest, most monthly payments also include property taxes, homeowners insurance and, if your down payment is under 20%, PMI."}},
+      {"@type": "Question", "name": "How much is the mortgage payment on a $400,000 house?", "acceptedAnswer": {"@type": "Answer", "text": "With 20% down ($320,000 loan) at 6.8% for 30 years, principal and interest is about $2,086 per month. Adding typical property taxes ($367/mo) and homeowners insurance ($150/mo) brings the real payment to about $2,603 per month."}},
+      {"@type": "Question", "name": "What is PMI and when can I remove it?", "acceptedAnswer": {"@type": "Answer", "text": "Private mortgage insurance (PMI) is charged on conventional loans when your down payment is less than 20%. It typically costs 0.3%–1.5% of the loan amount per year. You can request removal once your loan balance reaches 80% of the home's original value, and it is automatically removed at 78%."}},
+      {"@type": "Question", "name": "Is a 15-year or 30-year mortgage better?", "acceptedAnswer": {"@type": "Answer", "text": "A 15-year mortgage has a higher monthly payment but far less interest. On a $320,000 loan at 6.8%, a 15-year term costs $2,841/mo and $191,306 total interest, versus $2,086/mo and $431,018 interest over 30 years — a saving of about $239,700. Choose 15 years only if the higher payment still leaves room in your budget."}},
+      {"@type": "Question", "name": "How much does 1% lower interest rate save?", "acceptedAnswer": {"@type": "Answer", "text": "On a $320,000 loan over 30 years, dropping from 7.5% to 6.5% cuts the payment by roughly $200 per month and saves around $72,000 in interest over the life of the loan. Even a 0.25% rate improvement is worth shopping for."}},
+      {"@type": "Question", "name": "Does this mortgage calculator include taxes and insurance?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Enter your annual property tax and homeowners insurance amounts and the calculator adds them to your monthly payment, along with PMI if your down payment is below 20% and any monthly HOA fee."}},
+      {"@type": "Question", "name": "How much extra payment saves the most interest?", "acceptedAnswer": {"@type": "Answer", "text": "Paying just $200 extra per month on a $320,000 loan at 6.8% pays the mortgage off about 6.8 years early and saves roughly $113,437 in interest. Extra payments go entirely to principal, so early payments have the biggest effect."}},
+      {"@type": "Question", "name": "How much house can I afford on my salary?", "acceptedAnswer": {"@type": "Answer", "text": "A common guideline is the 28/36 rule: housing costs should stay under 28% of gross monthly income, and total debts under 36%. On a $90,000 salary that means a maximum housing payment of about $2,100 per month including taxes and insurance."}}
+    ]
+  }
+  </script>
   <meta name="keywords" content="mortgage calculator, monthly payment calculator, home loan calculator, amortization calculator, USA mortgage"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -456,7 +490,7 @@
   <header>
     <div class="eyebrow">Free Tool · No Sign-up</div>
     <h1>Mortgage <em>Calculator</em></h1>
-    <p class="subtitle">Instantly calculate your monthly payment, total interest, and full amortization schedule.</p>
+    <p class="subtitle">Calculate your real monthly payment — principal, interest, property taxes, insurance and PMI included — plus total interest and a full amortization schedule.</p>
   </header>
 
   <div class="calculator-grid">
@@ -511,6 +545,32 @@
         </div>
       </div>
 
+      <div class="field">
+        <label>Property Tax (Annual)</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="propTax" value="4400" min="0" step="100" oninput="calculate()" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Home Insurance (Annual)</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="homeIns" value="1800" min="0" step="50" oninput="calculate()" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>HOA Fees (Monthly, optional)</label>
+        <div class="input-wrap has-prefix">
+          <span class="input-prefix">$</span>
+          <input type="number" id="hoaFee" value="0" min="0" step="10" oninput="calculate()" />
+        </div>
+      </div>
+
+      <p style="font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:6px">PMI is added automatically if your down payment is under 20% (estimated at 0.55% of the loan per year).</p>
+
       <button class="calc-btn" onclick="calculate()">Calculate Payment →</button>
     </div>
 
@@ -523,9 +583,25 @@
       <div id="resultContent" style="display:none">
         <div class="result-label">Monthly Payment</div>
         <div class="result-amount" id="monthlyPayment">$0</div>
-        <div class="result-note">Principal + Interest only</div>
+        <div class="result-note" id="resultNote">Principal & interest + taxes & insurance</div>
 
         <div class="result-breakdown">
+          <div class="breakdown-item">
+            <div class="breakdown-label">Principal & Interest</div>
+            <div class="breakdown-val" id="piMonthly">$0</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Property Tax / mo</div>
+            <div class="breakdown-val" id="taxMonthly">$0</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">Insurance / mo</div>
+            <div class="breakdown-val" id="insMonthly">$0</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="breakdown-label">PMI / mo</div>
+            <div class="breakdown-val" id="pmiMonthly">$0</div>
+          </div>
           <div class="breakdown-item">
             <div class="breakdown-label">Loan Amount</div>
             <div class="breakdown-val" id="loanAmountDisplay">$0</div>
@@ -590,6 +666,57 @@
     </div>
 
   </div>
+
+  <section style="background:#fff;border:1px solid #e0dcd4;border-radius:16px;box-shadow:0 2px 24px rgba(0,0,0,0.07);padding:36px 32px;margin-top:28px;line-height:1.75;font-size:15.5px;color:#2a2a26">
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.7rem;margin-bottom:14px">How to Use This Mortgage Calculator</h2>
+    <p style="margin-bottom:14px">Enter the home price, your down payment, the loan term and the interest rate. Then add your annual property tax and homeowners insurance — the two costs most basic calculators leave out — and any monthly HOA fee. If your down payment is under 20%, the calculator automatically adds an estimate for private mortgage insurance (PMI). Your result is the payment you will actually see on your monthly statement, not just principal and interest.</p>
+
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.7rem;margin:26px 0 14px">How a Mortgage Payment Is Calculated</h2>
+    <p style="margin-bottom:14px">Lenders use one formula for every fixed-rate loan:</p>
+    <p style="background:#f5f2ec;border-radius:10px;padding:14px 18px;font-weight:600;text-align:center;margin-bottom:14px">M = P × r(1 + r)<sup>n</sup> ÷ [ (1 + r)<sup>n</sup> − 1 ]</p>
+    <p style="margin-bottom:14px"><strong>M</strong> is your monthly principal-and-interest payment, <strong>P</strong> is the loan amount (home price minus down payment), <strong>r</strong> is the monthly interest rate (your annual rate divided by 12), and <strong>n</strong> is the total number of payments (360 for a 30-year loan). Taxes, insurance, PMI and HOA dues are then added on top, because your lender collects them in escrow each month.</p>
+
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.7rem;margin:26px 0 14px">Mortgage Payment Examples (20% Down, 6.8%, 30 Years)</h2>
+    <div style="overflow-x:auto;margin-bottom:14px">
+      <table style="width:100%;border-collapse:collapse;font-size:14.5px">
+        <thead><tr><th style="text-align:left;padding:8px 10px;border-bottom:2px solid #e0dcd4">Home Price</th><th style="text-align:left;padding:8px 10px;border-bottom:2px solid #e0dcd4">Loan Amount</th><th style="text-align:left;padding:8px 10px;border-bottom:2px solid #e0dcd4">Principal &amp; Interest</th><th style="text-align:left;padding:8px 10px;border-bottom:2px solid #e0dcd4">Total Interest</th></tr></thead>
+        <tbody>
+          <tr><td style="padding:8px 10px;border-bottom:1px solid #eee">$300,000</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$240,000</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$1,565/mo</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$323,263</td></tr>
+          <tr><td style="padding:8px 10px;border-bottom:1px solid #eee">$400,000</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$320,000</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$2,086/mo</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$431,018</td></tr>
+          <tr><td style="padding:8px 10px;border-bottom:1px solid #eee">$500,000</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$400,000</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$2,608/mo</td><td style="padding:8px 10px;border-bottom:1px solid #eee">$538,772</td></tr>
+          <tr><td style="padding:8px 10px">$750,000</td><td style="padding:8px 10px">$600,000</td><td style="padding:8px 10px">$3,912/mo</td><td style="padding:8px 10px">$808,158</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-bottom:14px">On the $400,000 example, adding typical property tax ($4,400/year) and insurance ($1,800/year) raises the real monthly payment from $2,086 to about <strong>$2,603</strong>. That $517 difference is exactly why a calculator with taxes and insurance gives you a budget you can trust.</p>
+
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.7rem;margin:26px 0 14px">15-Year vs 30-Year Mortgage</h2>
+    <p style="margin-bottom:14px">On a $320,000 loan at 6.8%, a 30-year term costs $2,086/mo and $431,018 in total interest. A 15-year term raises the payment to $2,841/mo but cuts total interest to $191,306 — a saving of roughly <strong>$239,700</strong>. The 15-year loan is the better deal only if the higher payment still leaves you an emergency fund and room to invest.</p>
+
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.7rem;margin:26px 0 14px">5 Ways to Lower Your Monthly Payment</h2>
+    <p style="margin-bottom:14px">1. <strong>Increase your down payment</strong> — reaching 20% removes PMI entirely.<br>
+    2. <strong>Improve your credit score before applying</strong> — even 0.5% off the rate saves tens of thousands. See our guide on the <a href="credit-score-to-buy-a-house.html" style="color:#2d5f3f">credit score needed to buy a house</a>.<br>
+    3. <strong>Compare at least 3 lenders</strong> — rate quotes for the same borrower commonly vary by 0.5% or more. Read <a href="how-to-get-best-mortgage-rate.html" style="color:#2d5f3f">how to get the best mortgage rate</a>.<br>
+    4. <strong>Choose a longer term</strong> — it lowers the payment (but raises total interest).<br>
+    5. <strong>Pay extra principal later</strong> — $200/mo extra on the example above pays the loan off about 6.8 years early and saves roughly $113,437 in interest. Try it in our <a href="debt-payoff.html" style="color:#2d5f3f">debt payoff calculator</a>.</p>
+    <p style="margin-bottom:14px">Not sure what price range fits your income? Start with our guide on <a href="how-much-house-can-i-afford.html" style="color:#2d5f3f">how much house you can afford</a>, check your <a href="debt-to-income-ratio-calculator.html" style="color:#2d5f3f">debt-to-income ratio</a>, or compare buying against renting with the <a href="rent-vs-buy.html" style="color:#2d5f3f">rent vs buy calculator</a>.</p>
+
+    <h2 style="font-family:'DM Serif Display',serif;font-size:1.7rem;margin:26px 0 14px">Frequently Asked Questions</h2>
+    <h3 style="font-size:16.5px;margin:16px 0 6px">How is a monthly mortgage payment calculated?</h3>
+    <p style="margin-bottom:12px">Your lender uses M = P × r(1+r)<sup>n</sup> ÷ [(1+r)<sup>n</sup> − 1]. Taxes, insurance and PMI are added on top of the principal-and-interest result.</p>
+    <h3 style="font-size:16.5px;margin:16px 0 6px">How much is the mortgage payment on a $400,000 house?</h3>
+    <p style="margin-bottom:12px">With 20% down at 6.8% for 30 years: $2,086/mo principal and interest, or about $2,603/mo including typical taxes and insurance.</p>
+    <h3 style="font-size:16.5px;margin:16px 0 6px">What is PMI and when can I remove it?</h3>
+    <p style="margin-bottom:12px">PMI is charged when your down payment is under 20% and typically costs 0.3%–1.5% of the loan per year. You can request removal at 80% loan-to-value; it is removed automatically at 78%.</p>
+    <h3 style="font-size:16.5px;margin:16px 0 6px">Is a 15-year or 30-year mortgage better?</h3>
+    <p style="margin-bottom:12px">A 15-year mortgage saves about $239,700 of interest on a $320,000 loan at 6.8%, but the payment is $755/mo higher. Pick it only if your budget comfortably allows it.</p>
+    <h3 style="font-size:16.5px;margin:16px 0 6px">How much does a 1% lower interest rate save?</h3>
+    <p style="margin-bottom:12px">On a $320,000, 30-year loan, 1% lower cuts the payment by roughly $200/mo and saves around $72,000 of interest over the loan's life.</p>
+    <h3 style="font-size:16.5px;margin:16px 0 6px">Does this calculator include taxes and insurance?</h3>
+    <p style="margin-bottom:12px">Yes — enter your annual tax and insurance amounts and they are included in the monthly total, along with PMI when it applies and any HOA fee.</p>
+    <h3 style="font-size:16.5px;margin:16px 0 6px">How much house can I afford on my salary?</h3>
+    <p style="margin-bottom:4px">Use the 28/36 rule: housing under 28% of gross monthly income, all debts under 36%. On a $90,000 salary, that caps your housing payment at about $2,100/mo including taxes and insurance.</p>
+  </section>
 
   <footer>
     <p>This calculator provides estimates for informational purposes only.<br>
@@ -657,12 +784,27 @@
     const totalPaid = monthly * n;
     const totalInt = totalPaid - principal;
 
+    // Taxes, insurance, HOA and PMI (PMI applies when down payment < 20%)
+    const taxM = (+document.getElementById('propTax').value || 0) / 12;
+    const insM = (+document.getElementById('homeIns').value || 0) / 12;
+    const hoaM = +document.getElementById('hoaFee').value || 0;
+    const downPct = price > 0 ? (dp / price) * 100 : 20;
+    const pmiM = downPct < 20 ? principal * 0.0055 / 12 : 0;
+    const totalMonthly = monthly + taxM + insM + hoaM + pmiM;
+
     // Payoff date
     const now = new Date();
     const payoff = new Date(now.getFullYear(), now.getMonth() + n, 1);
     const payoffStr = payoff.toLocaleString('en-US', {month:'short', year:'numeric'});
 
-    document.getElementById('monthlyPayment').textContent = fmt(monthly);
+    document.getElementById('monthlyPayment').textContent = fmt(totalMonthly);
+    document.getElementById('piMonthly').textContent = fmt(monthly);
+    document.getElementById('taxMonthly').textContent = fmt(taxM);
+    document.getElementById('insMonthly').textContent = fmt(insM);
+    document.getElementById('pmiMonthly').textContent = pmiM > 0 ? fmt(pmiM) : '$0';
+    document.getElementById('resultNote').textContent = pmiM > 0
+      ? 'Includes principal, interest, taxes, insurance & PMI'
+      : 'Includes principal, interest, taxes & insurance';
     document.getElementById('loanAmountDisplay').textContent = fmt(principal);
     document.getElementById('totalPayment').textContent = fmt(totalPaid);
     document.getElementById('totalInterest').textContent = fmt(totalInt);
@@ -719,6 +861,7 @@
   window.onload = () => {
     document.getElementById('downSliderVal').textContent = '20%';
     document.getElementById('rateSliderVal').textContent = '6.8%';
+    calculate();
   };
 </script>
 
